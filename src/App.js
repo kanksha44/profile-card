@@ -1,5 +1,7 @@
 import "./App.css";
 import Profilecard from "./component/profile.card/Profilecard";
+import Resume from "./component/resume/Resume";
+import {React,  useState } from "react";
 
 function App() {
   const users = [
@@ -26,6 +28,30 @@ function App() {
     },
   ];
 
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [showResume, setShowResume] = useState(false);
+
+  const handleSeeMoreClick = (user) => {
+    setSelectedUser(user);
+    setShowResume(true);
+  };
+
+  const handleBackButtonClick = () => {
+    setShowResume(false);
+  };
+
+  if (showResume) {
+    return (
+      <Resume
+        name={selectedUser.name}
+        designation={selectedUser.designation}
+        jobdesc={selectedUser.jobDescription}
+        onBackButtonClick={handleBackButtonClick}
+
+      />
+    );
+  }
+
   return (
     <div className="App">
       {users.map((user, index) => (
@@ -35,7 +61,7 @@ function App() {
           designation={user.designation}
           name={user.name}
           jobdesc={user.jobDescription}
-          onSeeMoreClick={() => alert(user.name)}
+          onSeeMoreClick={() => handleSeeMoreClick(user)}
         />
       ))}
     </div>

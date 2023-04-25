@@ -1,13 +1,7 @@
 import React from "react";
 import "./profilecard.css";
 
-const Profilecard = ({
-  image,
-  name,
-  designation,
-  jobdesc,
-  onSeeMoreClick,
-}) => {
+const Profilecard = ({ image, name, designation, jobdesc, onSeeMoreClick }) => {
   return (
     <div className="main-card">
       <div className="card">
